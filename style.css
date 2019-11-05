@@ -5,3 +5,15 @@
 body {
 	color: #565656;
 }
+.cards-board {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.card-spot {
+	width: 25%;
+	height: 100px;
+	background-color: green;
+	margin: 2rem;
+	color: white;
+}
