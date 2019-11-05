@@ -11,11 +11,17 @@ function countSeconds() {
    }, 1000);
 };
 
+var getCards = function(cards) {
+	 var allCards = $(jQuery.parseJSON(JSON.stringify(cards)));
+    var displayedCards = [];
+    for (var i = 0; i < 12; i++) {
+			var oneCard = allCards[Math.floor(Math.random()*allCards.length)];
+      displayedCards.push(oneCard);
+			$("#cardsBoard").append("<div>" + oneCard.id + oneCard.properties.color + oneCard.properties.shape +"</div>");
+    }
 
-var card = JSON.stringify(cards);
-// console.log(card);
+		console.log(displayedCards);
+    // return result;
+}
 
-$(jQuery.parseJSON(JSON.stringify(cards))).each(function() {
-    console.log(this.id);
-    console.log(this.properties.shape);
-});
+getCards(cards);
