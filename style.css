@@ -14,20 +14,20 @@ body {
 }
 .card-spot {
 	width: 20%;
-	height: 200px;
+	height: 80px;
 	background-color: #C3E7FF;
 	margin: 2rem;
 	border-radius: 2rem;
 }
 .card-text {
 	color: #90999F;
-	font-size: 1.5rem;
+	font-size: 0.7rem;
 	padding: 1rem;
 }
 .highlighted {
 	border: 5px solid yellow;
 }
-.error-message {
+.message {
 	visibility: hidden;
 }
 .show-message {
