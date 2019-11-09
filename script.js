@@ -1,72 +1,156 @@
 $("#start-button").click(function() {
-  // countSeconds();
-  getCards(cards);
+	// countSeconds();
+	getCards(cards);
 });
 
 function countSeconds() {
-   var start = Date.now();
-   var textNode = document.createTextNode('0 seconds');
-   document.getElementById('seconds').appendChild(textNode);
-   return setInterval(function () {
-		 textNode.data = Math.floor((Date.now()-start)/1000) + ' seconds';
-   }, 1000);
+	var start = Date.now();
+	var textNode = document.createTextNode('0 seconds');
+	document.getElementById('seconds').appendChild(textNode);
+	return setInterval(function() {
+		textNode.data = Math.floor((Date.now() - start) / 1000) + ' seconds';
+	}, 1000);
 };
 
+// set variables
+var allCards;
+var displayedCards = [];
+var oneCard;
+var thisCard;
 var dataObj;
 var cardObj;
+var selectedCards = [];
+var cardOne;
+var cardTwo;
+var cardThree;
 
-var getCards = function(cards) {
-	 var allCards = $(jQuery.parseJSON(JSON.stringify(cards))); //stringify cards
-   console.log("CARDS BEFORE ", allCards.length);
-    var displayedCards = [];
-    for (var i = 1; i < 13; i++) {
-			var oneCard = allCards[Math.floor(Math.random()*allCards.length)]; //select 12 random cards
-      $("#card"+i+"").empty();
-      $("#card"+i+"").append("<p class='card-text'>" + oneCard.id + " " + oneCard.properties.color + " " + oneCard.properties.shape +"</p>");
-      displayedCards.push(oneCard); //add random cards to new array
-      var cardToRemove = $(jQuery.parseJSON(JSON.stringify(oneCard)));
-      allCards.splice(cardToRemove, 1); //remove random cards from deck
-      dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
-      // console.log("Data Obj ", dataObj);
-      var thisCard = $("#card"+i+"");
-      // console.log("THIS CARD ", thisCard);
+// -----------------------------------------------------------------------------
 
-      // var something = thisCard.attr("dataCard")//returns "5"
-      // console.log("SOMETHING ", something); //works well
-
-       // thisCard.attr("dataCard", 20)      //changes "data-myval" to "20"
-       // console.log("This card with 20 ", thisCard.attr("dataCard"));
-       // thisCard.removeAttribute("data-myval")
-
-      thisCard.attr('dataCard', JSON.stringify(dataObj)); //setter
-      // console.log("this card with data obj ", thisCard.attr("dataCard"));
-      // var showCard = $(JSON.stringify(thisCard.attr('dataCard')));
-      // console.log("Obj in card: ", showCard);
-      // $("#card"+i+"").attr("dataCard",dataObj);
-      thisCard.click(function() {
-        // event.target.dataset.tag
-        // event.target.getAttribute('data-tag')
-        cardObj = $(this).attr("dataCard");
-        // console.log("cardObj: ", cardObj);
-        checkClicks(cardObj);
-      })
-    }
-
-		console.log(displayedCards);
-    console.log("CARDS AFTER ", allCards.length);
-    // return displayedCards;
-}
-var checkClicks = function(cardObj) {
-  console.log(cardObj);
-  var cardProperties = JSON.parse(cardObj)
-  console.log(cardProperties.id);
-  console.log(cardProperties["properties"].color);
+// shuffle deck of cards
+var shuffleDeck = function(c) {
+	for (var j, x, i = c.length; i; j = parseInt(Math.random() * i), x = c[--i], c[i] = c[j], c[j] = x);
+	return c;
 };
-// var selectCards = function(dataObj) {
-  // console.log(dataObj);
-  // console.log(event.target);
-  // var data_str = this("dataCard");
-  // var currentCard = jQuery.parseJSON(JSON.stringify(data_str)).data('key');
-  // console.log(currentCard);
-// };
-// selectCards(dataObj);
+
+// fill the board with new cards when start a new game
+var getCards = function(cards) {
+	allCards = shuffleDeck(cards);
+
+	// set selected cards array to empty to start a new draw
+	displayedCards = [];
+
+	// iterate and retrieve 12 cards for deck
+	for (var i = 0; i < 12; i++) {
+		oneCard = allCards[0]; // select the card
+		console.log("selected card ", oneCard.id);
+		thisCard = $("#card" + i + "");
+		thisCard.empty(); // empty card's spot
+
+		// print properties on card
+		thisCard.append("<p class='card-text'>" + oneCard.properties.number + "<br>" + oneCard.properties.color +
+			"<br>" + oneCard.properties.shape + "<br>" + oneCard.properties.fill + "</p>");
+
+		displayedCards.push(oneCard); //add random cards to new array
+
+		allCards.shift(); //remove random card from deck
+
+
+		//set dataCard property to the card object
+		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
+		thisCard.attr('dataCard', JSON.stringify(dataObj));
+
+		thisCard.click(function() {
+			cardObj = $(this).attr("dataCard");
+
+			// highlight each selected card
+			$(this).addClass('highlighted');
+			// check if clicked card is already selected. if it does - diselect it
+			if (selectedCards.length > 0) {
+				console.log("array has smoething");
+				if (jQuery.inArray(cardObj, selectedCards) > -1) {
+					console.log("IT'S HERE!");
+					selectedCards.splice(cardObj, 1);
+					console.log("ARRAY AFTER REMOVE CHECK ", selectedCards);
+					$(this).removeClass('highlighted'); // remove highlight class
+				} else {
+					console.log("IT'S NOT HERE!");
+					// push selected card to array
+					selectedCards.push(cardObj);
+				}
+			} else {
+				// push selected card to array
+				selectedCards.push(cardObj);
+			}
+			checkClicks();
+		})
+	}
+};
+
+var checkClicks = function() {
+	// validate set if there are 3 selected
+	if (selectedCards.length === 3) {
+		validateSet();
+	}
+};
+
+var validateSet = function() {
+	// set cards with properties for easy access
+	cardOne = JSON.parse(selectedCards[0]).properties;
+	cardTwo = JSON.parse(selectedCards[1]).properties;
+	cardThree = JSON.parse(selectedCards[2]).properties;
+
+	console.log("START VALIDATING");
+
+	checkColor();
+	// empty array
+};
+
+var checkColor = function() {
+	if (((cardOne.color === cardTwo.color) && (cardOne.color == cardThree.color) && (cardTwo.color == cardThree.color)) ||
+		((cardOne.color !== cardTwo.color) && (cardOne.color !== cardThree.color) && (cardTwo.color !== cardThree.color))) {
+		console.log("COLOR SET");
+		checkNumber();
+	} else {
+		console.log("not color set!");
+		$('#message').addClass('show-message');
+		selectedCards = []; // empty array
+	}
+};
+
+var checkNumber = function() {
+	console.log("check number");
+	if (((cardOne.number === cardTwo.number) && (cardOne.number == cardThree.number) && (cardTwo.number == cardThree.number)) ||
+		((cardOne.number !== cardTwo.number) && (cardOne.number !== cardThree.number) && (cardTwo.number !== cardThree.number))) {
+		console.log("NUMBER SET");
+		checkShape();
+	} else {
+		console.log("not number set!");
+		$('#message').addClass('show-message');
+		selectedCards = []; // empty array
+	}
+};
+
+var checkShape = function() {
+	console.log("check shape");
+	if (((cardOne.shape === cardTwo.shape) && (cardOne.shape == cardThree.shape) && (cardTwo.shape == cardThree.shape)) ||
+		((cardOne.shape !== cardTwo.shape) && (cardOne.shape !== cardThree.shape) && (cardTwo.shape !== cardThree.shape))) {
+		console.log("SHAPE SET");
+		checkFill();
+	} else {
+		console.log("not shape set!");
+		$('#message').addClass('show-message');
+		selectedCards = []; // empty array
+	}
+};
+
+var checkFill = function() {
+	console.log("check shape");
+	if (((cardOne.fill === cardTwo.fill) && (cardOne.fill == cardThree.fill) && (cardTwo.fill == cardThree.fill)) ||
+		((cardOne.fill !== cardTwo.fill) && (cardOne.fill !== cardThree.fill) && (cardTwo.fill !== cardThree.fill))) {
+		console.log("FILL SET");
+	} else {
+		console.log("not fill set!");
+		$('#message').addClass('show-message');
+		selectedCards = []; // empty array
+	}
+};
