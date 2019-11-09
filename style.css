@@ -21,6 +21,15 @@ body {
 }
 .card-text {
 	color: #90999F;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	padding: 1rem;
+}
+.highlighted {
+	border: 5px solid yellow;
+}
+.error-message {
+	visibility: hidden;
+}
+.show-message {
+	visibility: visible;
 }
