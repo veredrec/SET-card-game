@@ -13,11 +13,11 @@ body {
 	flex-wrap: wrap;
 }
 .card-spot {
-	width: 20%;
-	height: 80px;
+	width: 15%;
 	background-color: #C3E7FF;
 	margin: 2rem;
 	border-radius: 2rem;
+	border: 2px solid #565656;
 }
 .card-text {
 	color: #90999F;
