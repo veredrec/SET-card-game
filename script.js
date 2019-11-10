@@ -1,7 +1,11 @@
-$("#start-button").click(function() {
+$("#startButton").click(function() {
 	countSeconds();
+	$('#successMessage').removeClass('show-message');
+	$('#errorMessage').removeClass('show-message');
   setCards();
 	getCards(cards);
+	score = 0;
+	$('#score').text(score);
 });
 
 // timer - count seconds
@@ -16,6 +20,7 @@ function countSeconds() {
 };
 
 // set variables
+var score;
 var allCards;
 var oneCard;
 var thisCard;
@@ -46,17 +51,19 @@ var getCards = function(cards) {
 	for (var i = 0; i < 12; i++) {
 		oneCard = allCards[0]; // select the card
 		thisCard = $("#card" + i + "");
+		console.log(thisCard);
+		thisCard.removeClass('highlighted');
 		thisCard.empty(); // empty card's spot
 
-		// print properties on card
-		thisCard.append("<p class='card-text'>" + oneCard.properties.number + "<br>" + oneCard.properties.color +
-			"<br>" + oneCard.properties.shape + "<br>" + oneCard.properties.fill + "</p>");
-
+		// show card image property on card
+    $(thisCard).attr("src", oneCard.properties.image);
 		allCards.shift(); //remove random card from deck
 
 		//set dataCard property to the card object
 		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
 		thisCard.attr('dataCard', JSON.stringify(dataObj));
+
+		thisCard.off('click'); // remove click event so it won't add multiple click events
 
     thisCard.click(function() {
 			clickItem(this);
@@ -65,31 +72,56 @@ var getCards = function(cards) {
 };
 
 var drawCards = function() {
-  clickedItems = [];
-  selectedCards = [];
+  console.log("in draw cards");
 	// replace 3 selected cards with 3 next cards in deck
 	for (var i = 0; i < 3; i++) {
 		oneCard = allCards[0]; // select the card
+    console.log("clicked items ", clickedItems);
+    console.log("one card ", oneCard);
 		thisCard = $("#" + clickedItems[i] + "");
 		thisCard.empty(); // empty card's spot
 
-		// print properties on card
-		thisCard.append("<p class='card-text'>" + oneCard.properties.number + "<br>" + oneCard.properties.color +
-			"<br>" + oneCard.properties.shape + "<br>" + oneCard.properties.fill + "</p>");
+    // show card image property on card
+    $(thisCard).attr("src", oneCard.properties.image);
+    console.log("this card ", thisCard);
 
 		allCards.shift(); //remove random card from deck
-
 
 		//set dataCard property to the card object
 		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
 		thisCard.attr('dataCard', JSON.stringify(dataObj));
 
-		thisCard.click(function() {
-			clickItem(this);
-		});
+		// thisCard.click(function() {
+    //   clickedItems = [];
+		// 	clickItem(this);
+		// });
 	};
 };
 
+var clickItem = function(t) {
+	$('#successMessage').removeClass('show-message');
+	$('#errorMessage').removeClass('show-message');
+	clickedItems.push(t.id);
+	console.log("clicked items after 'click Item'", clickedItems);
+	cardObj = $(t).attr("dataCard");
+
+	// highlight each selected card
+	$(t).addClass('highlighted');
+	// check if clicked card is already selected. if it does - diselect it
+	if (selectedCards.length > 0) {
+		if (jQuery.inArray(cardObj, selectedCards) > -1) {
+			selectedCards.splice(cardObj, 1);
+			$(t).removeClass('highlighted'); // remove highlight class
+		} else {
+			// push selected card to array
+			selectedCards.push(cardObj);
+		}
+	} else {
+		// push selected card to array
+		selectedCards.push(cardObj);
+	}
+	checkClicks();
+};
 var checkClicks = function() {
 	// validate set if there are 3 selected
 	if (selectedCards.length === 3) {
@@ -143,12 +175,16 @@ var checkFill = function() {
 };
 
 var clearHighlight = function() {
+	console.log("clearing highlight");
 	for (var i = 0; i < 3; i++) {
 		$("#" + clickedItems[i] + "").removeClass('highlighted');
 	}
-}
+	clickedItems = []; // empty array
+	console.log("just empty the clicked!");
+	selectedCards = []; // empty array
+};
 
-var score = 0;
+score = 0;
 var updateScore = function() {
   score++;
   $('#score').text(score);
@@ -157,10 +193,10 @@ var updateScore = function() {
 var earnSet = function() {
   $('#successMessage').addClass('show-message');
 	updateScore();
+	drawCards();
 	setTimeout(function() {
-		drawCards();
-	}, 1000);
-	clearHighlight();
+		clearHighlight();
+	}, 500);
 };
 
 var indicateNoSet = function() {
@@ -168,32 +204,4 @@ var indicateNoSet = function() {
 	setTimeout(function() {
 		clearHighlight();
 	}, 300);
-  selectedCards = []; // empty array
-  setTimeout(function() {
-		clickedItems = [];
-	}, 300);
-};
-
-var clickItem = function(t) {
-  $('#successMessage').removeClass('show-message');
-  $('#errorMessage').removeClass('show-message');
-	clickedItems.push(t.id);
-	cardObj = $(t).attr("dataCard");
-
-	// highlight each selected card
-	$(t).addClass('highlighted');
-	// check if clicked card is already selected. if it does - diselect it
-	if (selectedCards.length > 0) {
-		if (jQuery.inArray(cardObj, selectedCards) > -1) {
-			selectedCards.splice(cardObj, 1);
-			$(t).removeClass('highlighted'); // remove highlight class
-		} else {
-			// push selected card to array
-			selectedCards.push(cardObj);
-		}
-	} else {
-		// push selected card to array
-		selectedCards.push(cardObj);
-	}
-	checkClicks();
 };

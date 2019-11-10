@@ -7,7 +7,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-1-P.png"
 			}
 		},
 		{
@@ -17,7 +17,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-2-P.png"
 			}
 		},
 		{
@@ -27,7 +27,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-3-P.png"
 			}
 		},
 		{
@@ -37,7 +37,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-1-P.png"
 			}
 		},
 		{
@@ -47,7 +47,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-2-P.png"
 			}
 		},
 		{
@@ -57,7 +57,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-3-P.png"
 			}
 		},
 		{
@@ -67,7 +67,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-1-P.png"
 			}
 		},
 		{
@@ -77,7 +77,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-2-P.png"
 			}
 		},
 		{
@@ -87,7 +87,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-3-P.png"
 			}
 		},
 		{
@@ -97,7 +97,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-1-P.png"
 			}
 		},
 		{
@@ -107,7 +107,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-2-P.png"
 			}
 		},
 		{
@@ -117,7 +117,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-3-P.png"
 			}
 		},
 		{
@@ -127,7 +127,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-1-P.png"
 			}
 		},
 		{
@@ -137,7 +137,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-2-P.png"
 			}
 		},
 		{
@@ -147,7 +147,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-3-P.png"
 			}
 		},
 		{
@@ -157,7 +157,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-1-P.png"
 			}
 		},
 		{
@@ -167,7 +167,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-2-P.png"
 			}
 		},
 		{
@@ -177,7 +177,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-3-P.png"
 			}
 		},
 		{
@@ -187,7 +187,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-1-P.png"
 			}
 		},
 		{
@@ -197,7 +197,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-2-P.png"
 			}
 		},
 		{
@@ -207,7 +207,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-3-P.png"
 			}
 		},
 		{
@@ -217,7 +217,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-1-P.png"
 			}
 		},
 		{
@@ -227,7 +227,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-2-P.png"
 			}
 		},
 		{
@@ -237,7 +237,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-3-P.png"
 			}
 		},
 		{
@@ -247,7 +247,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-1-P.png"
 			}
 		},
 		{
@@ -257,7 +257,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-2-P.png"
 			}
 		},
 		{
@@ -267,7 +267,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-3-P.png"
 			}
 		},
 		{
@@ -277,7 +277,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-1-G.png"
 			}
 		},
 		{
@@ -287,7 +287,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-2-G.png"
 			}
 		},
 		{
@@ -297,7 +297,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-3-G.png"
 			}
 		},
 		{
@@ -307,7 +307,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-1-G.png"
 			}
 		},
 		{
@@ -317,7 +317,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-2-G.png"
 			}
 		},
 		{
@@ -327,7 +327,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-3-G.png"
 			}
 		},
 		{
@@ -337,7 +337,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-1-G.png"
 			}
 		},
 		{
@@ -347,7 +347,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-2-G.png"
 			}
 		},
 		{
@@ -357,7 +357,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-3-G.png"
 			}
 		},
 		{
@@ -367,7 +367,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-1-G.png"
 			}
 		},
 		{
@@ -377,7 +377,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-2-G.png"
 			}
 		},
 		{
@@ -387,7 +387,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-3-G.png"
 			}
 		},
 		{
@@ -397,7 +397,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-1-G.png"
 			}
 		},
 		{
@@ -407,7 +407,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-2-G.png"
 			}
 		},
 		{
@@ -417,7 +417,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-3-G.png"
 			}
 		},
 		{
@@ -427,7 +427,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-1-G.png"
 			}
 		},
 		{
@@ -437,7 +437,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-2-G.png"
 			}
 		},
 		{
@@ -447,7 +447,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-3-G.png"
 			}
 		},
 		{
@@ -457,7 +457,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-1-G.png"
 			}
 		},
 		{
@@ -467,7 +467,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-2-G.png"
 			}
 		},
 		{
@@ -477,7 +477,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-3-G.png"
 			}
 		},
 		{
@@ -487,7 +487,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-1-G.png"
 			}
 		},
 		{
@@ -497,7 +497,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-2-G.png"
 			}
 		},
 		{
@@ -507,7 +507,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-3-G.png"
 			}
 		},
 		{
@@ -517,7 +517,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-1-G.png"
 			}
 		},
 		{
@@ -527,7 +527,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-2-G.png"
 			}
 		},
 		{
@@ -537,7 +537,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-3-G.png"
 			}
 		},
 		{
@@ -547,7 +547,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-1-R.png"
 			}
 		},
 		{
@@ -557,7 +557,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-2-R.png"
 			}
 		},
 		{
@@ -567,7 +567,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/O-E-3-R.png"
 			}
 		},
 		{
@@ -577,7 +577,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-1-R.png"
 			}
 		},
 		{
@@ -587,7 +587,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-2-R.png"
 			}
 		},
 		{
@@ -597,7 +597,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/O-S-3-R.png"
 			}
 		},
 		{
@@ -607,7 +607,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-1-R.png"
 			}
 		},
 		{
@@ -617,7 +617,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-2-R.png"
 			}
 		},
 		{
@@ -627,7 +627,7 @@ var setCards = function() {
 				shape: "oval",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/O-F-3-R.png"
 			}
 		},
 		{
@@ -637,7 +637,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-1-R.png"
 			}
 		},
 		{
@@ -647,7 +647,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-2-R.png"
 			}
 		},
 		{
@@ -657,7 +657,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/S-E-3-R.png"
 			}
 		},
 		{
@@ -667,7 +667,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-1-R.png"
 			}
 		},
 		{
@@ -677,7 +677,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-2-R.png"
 			}
 		},
 		{
@@ -687,7 +687,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/S-S-3-R.png"
 			}
 		},
 		{
@@ -697,7 +697,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-1-R.png"
 			}
 		},
 		{
@@ -707,7 +707,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-2-R.png"
 			}
 		},
 		{
@@ -717,7 +717,7 @@ var setCards = function() {
 				shape: "snake",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/S-F-3-R.png"
 			}
 		},
 		{
@@ -727,7 +727,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-1-R.png"
 			}
 		},
 		{
@@ -737,7 +737,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-2-R.png"
 			}
 		},
 		{
@@ -747,7 +747,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "empty",
-				image: "src"
+				image: "./assets/cards/D-E-3-R.png"
 			}
 		},
 		{
@@ -757,7 +757,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-1-R.png"
 			}
 		},
 		{
@@ -767,7 +767,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-2-R.png"
 			}
 		},
 		{
@@ -777,7 +777,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "stripes",
-				image: "src"
+				image: "./assets/cards/D-S-3-R.png"
 			}
 		},
 		{
@@ -787,7 +787,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 1,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-1-R.png"
 			}
 		},
 		{
@@ -797,7 +797,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 2,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-2-R.png"
 			}
 		},
 		{
@@ -807,7 +807,7 @@ var setCards = function() {
 				shape: "diamond",
 				number: 3,
 				fill: "full",
-				image: "src"
+				image: "./assets/cards/D-F-3-R.png"
 			}
 		}
 	]
