@@ -1,7 +1,6 @@
 $("#startButton").click(function() {
 	countSeconds();
-	$('#successMessage').removeClass('show-message');
-	$('#errorMessage').removeClass('show-message');
+	$( ".message" ).remove();
   setCards();
 	getCards(cards);
 	score = 0;
@@ -102,8 +101,7 @@ var drawCards = function() {
 };
 
 var clickItem = function(t) {
-	$('#successMessage').removeClass('show-message');
-	$('#errorMessage').removeClass('show-message');
+	$(".message").remove();
 	cardObj = $(t).attr("dataCard");
 
 	// highlight each selected card
@@ -237,7 +235,7 @@ var updateScore = function() {
 };
 
 var earnSet = function() {
-  $('#successMessage').addClass('show-message');
+	$('#message').append('<span id="successMessage" class="success-message message"> This is a SET!</span>');
 	updateScore();
 	drawCards();
 	setTimeout(function() {
@@ -247,7 +245,7 @@ var earnSet = function() {
 };
 
 var indicateNoSet = function() {
-	$('#errorMessage').addClass('show-message');
+	$('#message').append('<span id="errorMessage" class="error-message message"> This is not a set :(</span>');
 	setTimeout(function() {
 		clearHighlight();
 	}, 300);
