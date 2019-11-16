@@ -3,24 +3,33 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Jockey+One|Merienda&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>SET</title>
 </head>
 	<body>
-		<h2 class="game-title">SET - THE GAME</h2>
-		<div class="buttons">
-			<button id="startButton" class="button">New Game</button>
-			<button id="howToButton" class="button">How to Play</button>
-			<button id="addCardsButton" class="button">Add 3 Cards</button>
-			<button id="endButton" class="button">End Game</button>
-		</div>
-		<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
-		<p class="player-score">Score: <span id="score">0</span></p>
-		<p id="errorMessage" class="message">This is not a set</p>
-		<p id="successMessage" class="message">SET!!!</p>
-		<div id="cardsBoard" class="cards-board">
+		<header class="header">
+			<h2 class="game-title">SET - THE GAME</h2>
+			<div class="buttons">
+				<button id="startButton" class="button-action">New Game</button>
+				<button id="addCardsButton" class="button-action">Add 3 Cards</button>
+				<button id="endButton" class="button-action">End Game</button>
+				<button id="howToButton" class="button-action">How to Play
+					<span class="how-button"></span>
+				</button>
+			</div>
+		</header>
+
+		<section class="messages">
+			<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
+			<p class="player-score">Score: <span id="score">0</span></p>
+			<p id="errorMessage" class="message">This is not a set</p>
+			<p id="successMessage" class="message">SET!!!</p>
+		</section>
+
+		<section id="cardsBoard" class="cards-board">
 			<img id="card0" class="card-spot" dataCard="" src="./assets/placeholder.png">
 			<img id="card1" class="card-spot" dataCard="" src="./assets/placeholder.png">
 			<img id="card2" class="card-spot" dataCard="" src="./assets/placeholder.png">
@@ -36,8 +45,15 @@
 			<img id="card12" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
 			<img id="card13" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
 			<img id="card14" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
-		</div>
+		</section>
 
+		<footer class="footer">
+			<p>Thanks for playing!</p>
+		</footer>
+		<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<script src="cards.js"></script>
 		<script src="script.js"></script>
 	</body>

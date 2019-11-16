@@ -1,9 +1,25 @@
-/* PURPLE: #813A92 */
-/* GREEN: #3A9281; */
-/* RED: #923A4B; */
+/* PURPLE: #BAA1D3 */
+/* GREEN: #A1D3BA; */
+/* RED: #AF0E1F; */
 
 body {
+	margin: 0;
 	color: #565656;
+	font-family: 'Merienda', cursive;
+}
+.header {
+	margin: 2rem;
+}
+.game-title {
+	font-family: 'Jockey One', sans-serif;
+	color: #975CC6;
+}
+.button-action {
+	color: #5CC697;
+	font-size: 1.1rem;
+	padding: 0.5rem;
+	border-radius: 0.4rem;
+	border: 1px solid #5CC697;
 }
 .cards-board {
 	width: 90%;
@@ -39,4 +55,8 @@ body {
 .card-spot-12 {
 	width: 15%;
 	margin: 2rem 1rem;
+}
+.how-button {
+    color: #565656;
+    font-size: 15px;
 }

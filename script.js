@@ -20,7 +20,14 @@ function countSeconds() {
 };
 
 $("#addCardsButton").click(function() {
-	addThree()
+	addThree();
+});
+
+$('#howToButton').popover({
+	title: "First time playing?",
+	content: "The goal of Set is to pick out a set of 3 cards from the 12 cards on the board. Each card has four characteristics: shape, color, number, and shading. A Set contains 3 cards in which for each characteristic they all similar or totally different. So, a set may consist of 3 cards of the same shape and color but no common shading, or number of shapes.",
+	trigger: "click",
+	container: ".how-button"
 });
 
 // set variables
