@@ -12,12 +12,12 @@
 		<h2 class="game-title">SET - THE GAME</h2>
 		<div class="buttons">
 			<button id="startButton" class="button">New Game</button>
-			<button class="button">How to Play</button>
-			<button class="button">Add 3 Cards</button>
-			<button class="button">End Game</button>
+			<button id="howToButton" class="button">How to Play</button>
+			<button id="addCardsButton" class="button">Add 3 Cards</button>
+			<button id="endButton" class="button">End Game</button>
 		</div>
 		<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
-		<p id="score" class="player-score">0</p>
+		<p class="player-score">Score: <span id="score">0</span></p>
 		<p id="errorMessage" class="message">This is not a set</p>
 		<p id="successMessage" class="message">SET!!!</p>
 		<div id="cardsBoard" class="cards-board">
@@ -33,6 +33,9 @@
 			<img id="card9" class="card-spot" dataCard="" src="./assets/placeholder.png">
 			<img id="card10" class="card-spot" dataCard="" src="./assets/placeholder.png">
 			<img id="card11" class="card-spot" dataCard="" src="./assets/placeholder.png">
+			<img id="card12" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
+			<img id="card13" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
+			<img id="card14" class="card-spot hide-card" dataCard="" src="./assets/placeholder.png">
 		</div>
 
 		<script src="cards.js"></script>

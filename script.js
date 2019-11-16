@@ -19,6 +19,10 @@ function countSeconds() {
    }, 1000);
 };
 
+$("#addCardsButton").click(function() {
+	addThree()
+});
+
 // set variables
 var score;
 var allCards;
@@ -46,12 +50,12 @@ var getCards = function(cards) {
   clickedItems = [];
   selectedCards = [];
 	allCards = shuffleDeck(cards);
+	checkIfTwleve();
 
 	// iterate and retrieve 12 cards for deck
 	for (var i = 0; i < 12; i++) {
 		oneCard = allCards[0]; // select the card
 		thisCard = $("#card" + i + "");
-		console.log(thisCard);
 		thisCard.removeClass('highlighted');
 		thisCard.empty(); // empty card's spot
 
@@ -80,29 +84,19 @@ var drawCards = function() {
     console.log("one card ", oneCard);
 		thisCard = $("#" + clickedItems[i] + "");
 		thisCard.empty(); // empty card's spot
-
-    // show card image property on card
-    $(thisCard).attr("src", oneCard.properties.image);
-    console.log("this card ", thisCard);
-
 		allCards.shift(); //remove random card from deck
 
+		// show card image property on card
+    $(thisCard).attr("src", oneCard.properties.image);
 		//set dataCard property to the card object
 		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
 		thisCard.attr('dataCard', JSON.stringify(dataObj));
-
-		// thisCard.click(function() {
-    //   clickedItems = [];
-		// 	clickItem(this);
-		// });
 	};
 };
 
 var clickItem = function(t) {
 	$('#successMessage').removeClass('show-message');
 	$('#errorMessage').removeClass('show-message');
-	clickedItems.push(t.id);
-	console.log("clicked items after 'click Item'", clickedItems);
 	cardObj = $(t).attr("dataCard");
 
 	// highlight each selected card
@@ -111,14 +105,19 @@ var clickItem = function(t) {
 	if (selectedCards.length > 0) {
 		if (jQuery.inArray(cardObj, selectedCards) > -1) {
 			selectedCards.splice(cardObj, 1);
+			clickedItems.splice(cardObj,1);
 			$(t).removeClass('highlighted'); // remove highlight class
 		} else {
 			// push selected card to array
 			selectedCards.push(cardObj);
+			clickedItems.push(t.id);
+			console.log("clicked items after 'click Item'", clickedItems);
 		}
 	} else {
 		// push selected card to array
 		selectedCards.push(cardObj);
+		clickedItems.push(t.id);
+		console.log("clicked items after 'click Item'", clickedItems);
 	}
 	checkClicks();
 };
@@ -127,6 +126,35 @@ var checkClicks = function() {
 	if (selectedCards.length === 3) {
 		validateSet();
 	}
+};
+
+var addThree = function() {
+	console.log("in add 3");
+	// add the next 3 cards in deck to create a 15 grid
+	for (var i = 12; i < 15; i++) {
+		oneCard = allCards[0]; // select the card
+    console.log("one card ", oneCard);
+		thisCard = $("#card" + [i] + "");
+		thisCard.empty(); // empty card's spot
+
+		// show card image property on card
+    $(thisCard).attr("src", oneCard.properties.image);
+
+		allCards.shift(); //remove random card from deck
+
+		//set dataCard property to the card object
+		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
+		thisCard.attr('dataCard', JSON.stringify(dataObj));
+		thisCard.removeClass('hide-card');
+		thisCard.off('click'); // remove click event so it won't add multiple click events
+
+		// change board layout to fit 15 cards in 3 rows
+		$(".card-spot").addClass('card-spot-12');
+		// add evebnt clicks to all cards
+		thisCard.click(function() {
+			clickItem(this);
+		});
+	};
 };
 
 var validateSet = function() {
@@ -184,6 +212,17 @@ var clearHighlight = function() {
 	selectedCards = []; // empty array
 };
 
+var checkIfTwleve = function() {
+	console.log("checking if 12");
+	// check if there are 12 cards
+	if (!$("#card14").hasClass('hide-card')) {
+		// hide extra cards spots
+		$("#card12, #card13, #card14").addClass('hide-card');
+		// change board layout back to fit only 12 cards
+		$(".card-spot").removeClass('card-spot-12');
+	}
+};
+
 score = 0;
 var updateScore = function() {
   score++;
@@ -196,7 +235,8 @@ var earnSet = function() {
 	drawCards();
 	setTimeout(function() {
 		clearHighlight();
-	}, 500);
+	}, 200);
+	checkIfTwleve();
 };
 
 var indicateNoSet = function() {
