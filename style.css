@@ -6,14 +6,14 @@ body {
 	color: #565656;
 }
 .cards-board {
-	width: 80%;
+	width: 90%;
 	margin: 2rem auto;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 }
 .card-spot {
-	width: 15%;
+	width: 16%;
 	background-color: #C3E7FF;
 	margin: 2rem;
 	border-radius: 2rem;
@@ -32,4 +32,11 @@ body {
 }
 .show-message {
 	visibility: visible;
+}
+.hide-card {
+	visibility: hidden;
+}
+.card-spot-12 {
+	width: 15%;
+	margin: 2rem 1rem;
 }
