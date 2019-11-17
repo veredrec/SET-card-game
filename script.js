@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 $("#startButton").click(function() {
-	$(".message").remove();
+	$("#message").empty();
 	countSeconds();
   setCards();
 	getCards(cards);
@@ -19,6 +19,7 @@ $("#startButton").click(function() {
 // timer - count seconds
 function countSeconds() {
   $('#seconds').empty();
+	// $('#message').remove();
    var start = Date.now();
    timeCount = document.createTextNode('0 seconds');
 	 $('#message').append('<span class="message-question">Can you find a set?</span>');
@@ -183,6 +184,8 @@ var addThree = function() {
 			clickItem(this);
 		});
 	};
+	// disable button
+	$('#addCardsButton').attr("disabled", true).addClass("disabled-button");
 };
 
 var validateSet = function() {
@@ -256,17 +259,18 @@ var updateScore = function() {
 };
 
 var earnSet = function() {
-	$('#message').append('<span id="successMessage" class="success-message message"> This is a SET!</span>');
+	$('#message').append('<br><span id="successMessage" class="success-message message"> This is a SET!</span>');
 	updateScore();
 	drawCards();
 	setTimeout(function() {
 		clearHighlight();
 	}, 200);
 	checkIfTwleve();
+	$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
 };
 
 var indicateNoSet = function() {
-	$('#message').append('<span id="errorMessage" class="error-message message"> This is not a set :(</span>');
+	$('#message').append('<br><span id="errorMessage" class="error-message message"> This is not a set :(</span>');
 	setTimeout(function() {
 		clearHighlight();
 	}, 300);
