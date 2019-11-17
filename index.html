@@ -13,48 +13,54 @@
 	<body>
 		<header class="header">
 			<h2 class="game-title">SET - THE GAME</h2>
-			<div class="buttons">
-				<button id="startButton" class="button-action">New Game</button>
-				<button id="addCardsButton" class="button-action">Add 3 Cards</button>
-				<button id="endButton" class="button-action">End Game</button>
-				<button id="howToButton" class="button-action">How to Play
-					<span class="how-button"></span>
-				</button>
-			</div>
 		</header>
 
-		<section class="messages">
-			<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
-			<p class="player-score">Score: <span id="score">0</span></p>
-			<p id="message" class="message-spot"></p>
-		</section>
+		<section class="page">
 
-		<section id="cardsBoard" class="cards-board">
-			<div class="cards-row">
-				<img id="card0" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card1" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card2" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card3" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card12" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
+			<div class="left-side">
+				<div class="buttons">
+					<button id="startButton" class="button-action">New Game</button>
+					<button id="addCardsButton" class="button-action">Add 3 Cards</button>
+					<button id="endButton" class="button-action">End Game</button>
+					<button id="howToButton" class="button-action">How to Play
+						<span class="how-button"></span>
+					</button>
+				</div>
+
+				<div class="messages">
+					<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
+					<p class="player-score">Score: <span id="score">0</span></p>
+					<p id="message" class="message-spot"></p>
+				</div>
 			</div>
-			<div class="cards-row">
-				<img id="card4" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card5" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card6" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card7" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card13" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
-			</div>
-			<div class="cards-row">
-				<img id="card8" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card9" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card10" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card11" class="card-spot" dataCard="" src="./assets/set.png">
-				<img id="card14" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
+
+			<div id="cardsBoard" class="cards-board">
+				<div class="cards-row">
+					<img id="card0" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card1" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card2" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card3" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card12" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
+				</div>
+				<div class="cards-row">
+					<img id="card4" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card5" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card6" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card7" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card13" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
+				</div>
+				<div class="cards-row">
+					<img id="card8" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card9" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card10" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card11" class="card-spot" dataCard="" src="./assets/set.png">
+					<img id="card14" class="card-spot hide-card added-card" dataCard="" src="./assets/set.png">
+				</div>
 			</div>
 		</section>
 
 		<footer class="footer">
-			<p>&#169;Vered Rekanati, 2019
+			<p>Vered Rekanati, 2019
 				<a href="https://veredrec.github.io/devdesign/" target="_blank" class="link"> &#10048; VeredDevDesign</a>
 				<img class="logo" src="./assets/logo.png" alt="logo">
 			</p>

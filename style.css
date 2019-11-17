@@ -11,6 +11,14 @@ body {
 .header {
 	margin: 1rem;
 }
+.page {
+	display: flex;
+}
+.left-side {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+}
 .game-title {
 	font-family: 'Jockey One', sans-serif;
 	color: #BAA1D3;
@@ -20,6 +28,7 @@ body {
 .buttons {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 	margin: 2rem auto;
 }
 .button-action {
@@ -28,7 +37,7 @@ body {
 	padding: 0.5rem;
 	border-radius: 0.4rem;
 	border: 1px solid #A1D3BA;
-	margin: 1rem 1rem 0 0;
+	margin: 1rem 0;
 }
 .button-action:hover {
 	background-color: #A1D3BA;
@@ -40,8 +49,13 @@ body {
 }
 .disabled-button {
 	color: #C9C7CB;
-	background-color: #EFEDF1;
 	cursor: not-allowed;
+}
+.disabled-button:hover {
+	background-color: #EDECEE;
+	border: 1px solid #C9C7CB;
+	color: #C9C7CB;
+	transition: all 0.5s ease;
 }
 .how-button {
   color: #2E2835;
@@ -84,7 +98,6 @@ body {
 	padding: 2rem;
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
 	flex-direction: column;
 }
 .cards-row {
@@ -115,6 +128,7 @@ body {
 .footer {
 	text-align: center;
 	color: #BAA1D3;
+	background-color: #EFEDF1;
 }
 .link {
 	color: #2E2835;
