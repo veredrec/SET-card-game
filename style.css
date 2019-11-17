@@ -38,6 +38,15 @@ body {
 .button-action:focus {
 	outline: 0;
 }
+.disabled-button {
+	color: #C9C7CB;
+	background-color: #EFEDF1;
+	cursor: not-allowed;
+}
+.how-button {
+  color: #2E2835;
+  font-size: 15px;
+}
 .popover {
 	font-family: 'Merienda', cursive;
 	color: #2E2835;
@@ -45,6 +54,12 @@ body {
 .popover-header {
 	color: #2E2835;
 	background-color: #E0CFF0;
+}
+.popover-body {
+	text-align: justify;
+}
+.popover-link {
+	color: green;
 }
 /* MESSAGES AND COUNTERS  */
 .messages {
@@ -59,17 +74,22 @@ body {
 .message {
 	visibility: visible;
 }
+.end-message {
+	color: #A1D3BA;
+}
 
 /* CARD BOARD  */
 .cards-board {
-	width: 60%;
 	margin: 1rem auto;
 	padding: 2rem;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	align-items: center;
-	border-radius: 1rem;
+	flex-direction: column;
+}
+.cards-row {
+	display: flex;
+	justify-content: center;
 }
 .card-spot {
 	width: 8rem;
@@ -85,15 +105,10 @@ body {
 	visibility: hidden;
 }
 .hide-card {
-	visibility: hidden;
+	display: none;
 }
-.card-spot-12 {
-	width: 6rem;
-	margin: 2rem 1rem;
-}
-.how-button {
-    color: #2E2835;
-    font-size: 15px;
+.added-card {
+	box-shadow: 0 0 5px #888;
 }
 
 /* FOOTER */
