@@ -1,20 +1,30 @@
+// disable "end game" and "add three" buttons before dealing cards
+$(document).ready(function() {
+	$('#endButton').attr("disabled", true).addClass("disabled-button");
+	$('#addCardsButton').attr("disabled", true).addClass("disabled-button");
+});
+
 $("#startButton").click(function() {
+	$(".message").remove();
 	countSeconds();
-	$( ".message" ).remove();
   setCards();
 	getCards(cards);
 	score = 0;
 	$('#score').text(score);
+	// enable "end game" and "add three" buttons after dealing cards
+	$('#endButton').attr("disabled", false).removeClass("disabled-button");
+	$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
 });
 
 // timer - count seconds
 function countSeconds() {
   $('#seconds').empty();
    var start = Date.now();
-   var textNode = document.createTextNode('0 seconds');
-   document.getElementById('seconds').appendChild(textNode);
+   timeCount = document.createTextNode('0 seconds');
+	 $('#message').append('<span class="message-question">Can you find a set?</span>');
+   document.getElementById('seconds').appendChild(timeCount);
    return setInterval(function () {
-		 textNode.data = Math.floor((Date.now()-start)/1000) + ' seconds';
+		 timeCount.data = Math.floor((Date.now()-start)/1000) + ' seconds'; //TODO: when adding minutes change the "seconds" here.
    }, 1000);
 };
 
@@ -22,14 +32,29 @@ $("#addCardsButton").click(function() {
 	addThree();
 });
 
+$("#endButton").click(function() {
+	$('#seconds').empty();
+	// message - final Score
+	$(".message").remove();
+	$("#message").empty();
+	if (score > 7) {
+		$('#message').append('<span class="message end-message"> GOOD GAME! Your final score is ' + score + '!</span>');
+	} else {
+		$('#message').append("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + timeCount.data + "</span>");
+	}
+});
+
 $('#howToButton').popover({
 	title: "First time playing?",
-	content: "The goal of Set is to pick out a set of 3 cards from the 12 cards on the board. Each card has four characteristics: shape, color, number, and shading. A Set contains 3 cards in which for each characteristic they all similar or totally different. So, a set may consist of 3 cards of the same shape and color but no common shading, or number of shapes.",
-	trigger: "click",
-	container: ".how-button"
+	content: "The goal of Set is to pick out a set of 3 cards from the 12 cards on the board. Each card has four characteristics: shape, color, number, and shading. A Set contains 3 cards in which for each characteristic they are all similar or totally different. So, a set may consist of 3 cards of the same shape and color but no common shading, or number of shapes. For more details read the <a href='https://www.setgame.com/sites/default/files/instructions/SET%20INSTRUCTIONS%20-%20ENGLISH.pdf' target='_blank' class='popover-link'>full instructions</a>",
+	trigger: 'focus',
+	container: ".how-button",
+	html: true,
+
 });
 
 // set variables
+var timeCount;
 var score;
 var allCards;
 var oneCard;
@@ -153,8 +178,6 @@ var addThree = function() {
 		thisCard.removeClass('hide-card');
 		thisCard.off('click'); // remove click event so it won't add multiple click events
 
-		// change board layout to fit 15 cards in 3 rows
-		$(".card-spot").addClass('card-spot-12');
 		// add evebnt clicks to all cards
 		thisCard.click(function() {
 			clickItem(this);
@@ -223,8 +246,6 @@ var checkIfTwleve = function() {
 	if (!$("#card14").hasClass('hide-card')) {
 		// hide extra cards spots
 		$("#card12, #card13, #card14").addClass('hide-card');
-		// change board layout back to fit only 12 cards
-		$(".card-spot").removeClass('card-spot-12');
 	}
 };
 
