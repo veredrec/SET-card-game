@@ -9,11 +9,12 @@ $(document).ready(function() {
 	$('#endButton').attr("disabled", true).addClass("disabled-button");
 	$('#addCardsButton').attr("disabled", true).addClass("disabled-button");
 });
-
 $("#startButton").click(function() {
+	$(".counter").removeClass('hide-message');
 	$("#message").empty();
 	$('#cardsBoard').removeClass('small-board');
-	// countSeconds();
+	startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+	startTimeCounter();
 	setCards();
 	getCards(cards);
 	score = 0;
@@ -23,34 +24,78 @@ $("#startButton").click(function() {
 	$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
 });
 
-// timer - count seconds
-function countSeconds() {
-	$('#seconds').empty();
-	// $('#message').remove();
-	var start = Date.now();
-	timeCount = document.createTextNode('0 seconds');
-	$('#message').append('<span class="message-question">Can you find a set?</span>');
-	document.getElementById('seconds').appendChild(timeCount);
-	return setInterval(function() {
-		timeCount.data = Math.floor((Date.now() - start) / 1000) + ' seconds'; //TODO: when adding minutes change the "seconds" here.
-	}, 1000);
-};
+
+function startTimeCounter() {
+	var now = Math.floor(Date.now() / 1000); // get the time now
+	var diff = now - startTime; // difference in seconds between now and start
+	var m = Math.floor(diff / 60); // get minutes value
+	var s = Math.floor(diff % 60); // get seconds value
+	m = checkTime(m); // add a leading zero for a single digit
+	s = checkTime(s); // add a leading zero for a single digit
+	$("#time").html(m + ":" + s); // update the text on the page
+
+	var t = setTimeout(startTimeCounter, 500); // set a timeout to update the timer
+}
+
+function checkTime(i) {
+	if (i < 10) {
+		i = "0" + i
+	}; // add zero in front of numbers < 10
+	return i;
+}
+
+// $('#seconds').empty();
+// // $('#message').remove();
+// var start = Date.now();
+// timeCount = document.createTextNode('0 seconds');
+// $('#message').append('<span class="message-question">Can you find a set?</span>');
+// document.getElementById('seconds').appendChild(timeCount);
+// return setInterval(function() {
+// 	timeCount.data = Math.floor((Date.now() - start) / 1000) + ' seconds'; //TODO: when adding minutes change the "seconds" here.
+// }, 1000);
+// };
 
 $("#addCardsButton").click(function() {
 	addThree();
 });
 
 $("#endButton").click(function() {
-	$('#seconds').empty();
-	// message - final Score
-	$(".message").remove();
-	$("#message").empty();
-	if (score > 7) {
-		$('#message').append('<span class="message end-message"> GOOD GAME! Your final score is ' + score + '!</span>');
-	} else {
-		$('#message').append("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + timeCount.data + "</span>");
-	}
+
+	$(".counter").addClass('hide-message');
+	// clearTimeout(startTimeCounter);
+	$("#confirm").click(function() {
+		$("#myModal").modal("hide");
+		startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+		// message - final Score
+		$(".message").remove();
+		$("#message").empty();
+		if (score > 7) {
+			$('#message').append('<span class="message end-message"> GOOD GAME! Your final score is ' + score + " in " + $("#time").html() + '!</span>');
+		} else {
+			$('#message').append("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + $("#time").html() + "</span>");
+		}
+		$('.modal').modal('hide');
+		return false;
+	});
+	$("#cancel").click(function() {
+		$(".counter").removeClass('hide-message');
+	});
+
 });
+
+//
+// var endGame = function() {
+// 	startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+// 	clearTimeout(startTimeCounter);
+// 	// message - final Score
+// 	$(".message").remove();
+// 	$("#message").empty();
+// 	if (score > 7) {
+// 		$('#message').append('<span class="message end-message"> GOOD GAME! Your final score is ' + score + " in " + $("#time").html() + '!</span>');
+// 	} else {
+// 		$('#message').append("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + $("#time").html() + "</span>");
+// 	}
+// }
 
 $('#howToButton').popover({
 	title: "First time playing?",
@@ -62,6 +107,7 @@ $('#howToButton').popover({
 
 // set variables
 var timeCount;
+var startTime;
 var score;
 var allCards;
 var oneCard;
@@ -147,20 +193,20 @@ var drawCards = function() {
 	// 	$('#message').append('<span id="successMessage" class="success-message message"> These are the last cards. Find sets if you still can and then click the "END GAME" button to see your final score!</span>');
 	// 	$('#cardsBoard').addClass('small-board');
 	// } else {
-		// remove selevted cards from board array
-		var i = 0;
-		while (i < boardArray.length) {
-			currentBoardItem = jQuery.parseJSON(boardArray[i].id);
-			if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
+	// remove selevted cards from board array
+	var i = 0;
+	while (i < boardArray.length) {
+		currentBoardItem = jQuery.parseJSON(boardArray[i].id);
+		if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
 			currentBoardItem === jQuery.parseJSON(selectedCards[1]).id ||
 			currentBoardItem === jQuery.parseJSON(selectedCards[2]).id) {
-				console.log("SAME! ", currentBoardItem);
-				boardArray.splice(i, 1);
-				// console.log("boardArray after splice ", boardArray.length);
-			} else {
-				i++;
-			}
+			console.log("SAME! ", currentBoardItem);
+			boardArray.splice(i, 1);
+			// console.log("boardArray after splice ", boardArray.length);
+		} else {
+			i++;
 		}
+	}
 
 	// for (var i = boardArray.length - 1; i >= 0; i--) {
 	// 	currentBoardItem = jQuery.parseJSON(boardArray[i].id);
@@ -199,6 +245,7 @@ var drawCards = function() {
 var checkEndGame = function() {
 	console.log("allcardslength ", allCards.length);
 	if (allCards.length <= 0) {
+		// $('#endButton').attr("disabled", true).addClass("disabled-button");
 		console.log("game ends soon!");
 		for (var i = 0; i < 3; i++) {
 			console.log("clickedItems in end game ", clickedItems);
@@ -215,24 +262,33 @@ var checkEndGame = function() {
 var clickItem = function(t) {
 	$(".message").remove();
 	cardObj = $(t).attr("dataCard");
+	console.log("CARD OBJ ", cardObj);
+	console.log("SELECTED ", selectedCards);
 
-	// highlight each selected card
-	$(t).addClass('highlighted');
 	// check if clicked card is already selected. if it does - diselect it
 	if (selectedCards.length > 0) {
 		if (jQuery.inArray(cardObj, selectedCards) > -1) {
+			console.log("FOUND MATCH!");
 			selectedCards.splice(cardObj, 1);
 			clickedItems.splice(cardObj, 1);
+			console.log("SELECTED AFTER SPLICE ", selectedCards);
+
 			$(t).removeClass('highlighted'); // remove highlight class
 		} else {
+			// highlight each selected card
+			$(t).addClass('highlighted');
 			// push selected card to array
 			selectedCards.push(cardObj);
 			clickedItems.push(t.id);
 			// console.log("clicked items after 'click Item'", clickedItems);
 		}
 	} else {
+		// highlight each selected card
+		$(t).addClass('highlighted');
 		// push selected card to array
 		selectedCards.push(cardObj);
+		console.log("SELECTED AT END ", selectedCards);
+
 		clickedItems.push(t.id);
 		// console.log("clicked items after 'click Item'", clickedItems);
 	}
@@ -352,144 +408,144 @@ var clearHighlight = function() {
 // };
 
 var arrangeCards = function() {
-		// console.log("EXTRA CARDS: ", extraCards);
-		if (!oneCard || boardArray.length <= 12) {
-			thisCard.addClass('remove-card');
-			$('#cardsBoard').addClass('small-board');
-			return false;
+	// console.log("EXTRA CARDS: ", extraCards);
+	if (!oneCard || boardArray.length <= 12) {
+		thisCard.addClass('remove-card');
+		$('#cardsBoard').addClass('small-board');
+		return false;
+	}
+	// console.log("selected 0 ", jQuery.parseJSON(selectedCards[0]).id);
+	// console.log("selected 1 ", jQuery.parseJSON(selectedCards[1]).id);
+	// console.log("selected 1 ", jQuery.parseJSON(selectedCards[2]).id);
+	console.log("SELECTED ", selectedCards);
+
+	var i = 0;
+	while (i < boardArray.length) {
+		currentBoardItem = jQuery.parseJSON(boardArray[i].id);
+		if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
+			currentBoardItem === jQuery.parseJSON(selectedCards[1]).id ||
+			currentBoardItem === jQuery.parseJSON(selectedCards[2]).id) {
+			// console.log("C ", currentBoardItem);
+			console.log("SAME! ", currentBoardItem);
+			boardArray.splice(i, 1);
+		} else {
+			i++;
+			// console.log("I ", i);
 		}
-		// console.log("selected 0 ", jQuery.parseJSON(selectedCards[0]).id);
-		// console.log("selected 1 ", jQuery.parseJSON(selectedCards[1]).id);
-		// console.log("selected 1 ", jQuery.parseJSON(selectedCards[2]).id);
-		console.log("SELECTED ", selectedCards);
+	}
+	// for (var i = boardArray.length - 1; i >= 0; i--) {
+	// 	currentBoardItem = jQuery.parseJSON(boardArray[i].id);
+	//
+	// 	if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
+	// 		currentBoardItem === jQuery.parseJSON(selectedCards[1]).id ||
+	// 		currentBoardItem === jQuery.parseJSON(selectedCards[2]).id) {
+	// 		// console.log("BOARD AFTER SPLICING: ", boardArray);
+	// 	}
+	// }
+	// for (var i = clickedItems.length-1; i >= 0; i--) {
+	// 	var idNum = clickedItems[i].replace( /^\D+/g, '');
+	// 	if (idNum < 12) {
+	// 		emptySpots.push(clickedItems[i]);
+	// 	}
+	// }
 
-		var i = 0;
-		while (i < boardArray.length) {
-			currentBoardItem = jQuery.parseJSON(boardArray[i].id);
-			if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
-				currentBoardItem === jQuery.parseJSON(selectedCards[1]).id ||
-				currentBoardItem === jQuery.parseJSON(selectedCards[2]).id) {
-				// console.log("C ", currentBoardItem);
-				console.log("SAME! ", currentBoardItem);
-				boardArray.splice(i, 1);
-			} else {
-				i++;
-				// console.log("I ", i);
-			}
-		}
-			// for (var i = boardArray.length - 1; i >= 0; i--) {
-			// 	currentBoardItem = jQuery.parseJSON(boardArray[i].id);
-			//
-			// 	if (currentBoardItem === jQuery.parseJSON(selectedCards[0]).id ||
-			// 		currentBoardItem === jQuery.parseJSON(selectedCards[1]).id ||
-			// 		currentBoardItem === jQuery.parseJSON(selectedCards[2]).id) {
-			// 		// console.log("BOARD AFTER SPLICING: ", boardArray);
-			// 	}
-			// }
-			// for (var i = clickedItems.length-1; i >= 0; i--) {
-			// 	var idNum = clickedItems[i].replace( /^\D+/g, '');
-			// 	if (idNum < 12) {
-			// 		emptySpots.push(clickedItems[i]);
-			// 	}
-			// }
+	// iterate and retrieve 12 cards for deck
+	for (var i = 0; i < boardArray.length; i++) {
+		cardToPlace = boardArray[i]; // select the card
+		thisCard = $("#card" + i + "");
+		thisCard.removeClass('highlighted');
+		thisCard.empty(); // empty card's spot
 
-			// iterate and retrieve 12 cards for deck
-			for (var i = 0; i < boardArray.length; i++) {
-				cardToPlace = boardArray[i]; // select the card
-				thisCard = $("#card" + i + "");
-				thisCard.removeClass('highlighted');
-				thisCard.empty(); // empty card's spot
+		// show card image property on card
+		$(thisCard).attr("src", cardToPlace.properties.image);
+		//set dataCard property to the card object
+		dataObj = jQuery.parseJSON(JSON.stringify(cardToPlace));
+		thisCard.attr('dataCard', JSON.stringify(dataObj));
 
-				// show card image property on card
-				$(thisCard).attr("src", cardToPlace.properties.image);
-				//set dataCard property to the card object
-				dataObj = jQuery.parseJSON(JSON.stringify(cardToPlace));
-				thisCard.attr('dataCard', JSON.stringify(dataObj));
+		thisCard.off('click'); // remove click event so it won't add multiple click events
 
-				thisCard.off('click'); // remove click event so it won't add multiple click events
+		thisCard.click(function() {
+			clickItem(this);
+		});
+		// console.log("each board array item: ", boardArray[i]);
+		// console.log("clicked in arrange ", clickedItems);
+	}
+	$("#card12, #card13, #card14").addClass('hide-card');
+	// console.log("EMPTY SPOTS ", emptySpots);
+	// for (var i = emptySpots.length-1; i > 0; i--) {
+	// 	console.log("EMPTY CURRENT: ", $("#" + emptySpots[i]));
+	// 	$("#" + emptySpots[i]).attr("src", cardToPlace.properties.image);
+	// 	dataObj = jQuery.parseJSON(JSON.stringify(cardToPlace));
+	// 	thisCard.attr('dataCard', JSON.stringify(dataObj));
+	// }
+	// console.log("board array after splice 3: ", boardArray);
+	console.log("board array length: ", boardArray.length);
 
-				thisCard.click(function() {
-					clickItem(this);
-				});
-				// console.log("each board array item: ", boardArray[i]);
-				// console.log("clicked in arrange ", clickedItems);
-			}
-			$("#card12, #card13, #card14").addClass('hide-card');
-			// console.log("EMPTY SPOTS ", emptySpots);
-			// for (var i = emptySpots.length-1; i > 0; i--) {
-			// 	console.log("EMPTY CURRENT: ", $("#" + emptySpots[i]));
-			// 	$("#" + emptySpots[i]).attr("src", cardToPlace.properties.image);
-			// 	dataObj = jQuery.parseJSON(JSON.stringify(cardToPlace));
-			// 	thisCard.attr('dataCard', JSON.stringify(dataObj));
-			// }
-			// console.log("board array after splice 3: ", boardArray);
-			console.log("board array length: ", boardArray.length);
+	// currentCardId = jQuery.parseJSON(currentCard[0].attributes[0].value);
+	// console.log("CARD ID: ", currentCardId);
+	// arrayOfAdded = ["card12", "card13", "card14"];
+	// console.log("AOA before ", arrayOfAdded);
+	// for (var i = 0; i < 3; i++) {
+	// console.log(currentCardId[i]);
+	// index = arrayOfAdded.indexOf(""+ currentCardId[i] + "");
+	// index = jQuery.inArray(currentCardId[i], arrayOfAdded)
+	// console.log(index);
+	// if (index > -1) {
+	// 	arrayOfAdded.splice(index, 1);
+	// 	console.log("AOA after ", arrayOfAdded);
+	// }
 
-			// currentCardId = jQuery.parseJSON(currentCard[0].attributes[0].value);
-			// console.log("CARD ID: ", currentCardId);
-			// arrayOfAdded = ["card12", "card13", "card14"];
-			// console.log("AOA before ", arrayOfAdded);
-			// for (var i = 0; i < 3; i++) {
-			// console.log(currentCardId[i]);
-			// index = arrayOfAdded.indexOf(""+ currentCardId[i] + "");
-			// index = jQuery.inArray(currentCardId[i], arrayOfAdded)
-			// console.log(index);
-			// if (index > -1) {
-			// 	arrayOfAdded.splice(index, 1);
-			// 	console.log("AOA after ", arrayOfAdded);
-			// }
-
-		}
+}
 
 
 
-		// for (var i = 0; i < 15; i++) {
-		// 	if (!$("#" + clickedItems[i] + "").dataCard) {
-		// 		console.log("card is empty");
-		// 	}
-		// };
+// for (var i = 0; i < 15; i++) {
+// 	if (!$("#" + clickedItems[i] + "").dataCard) {
+// 		console.log("card is empty");
+// 	}
+// };
 
 
-		// replace 3 selected cards with 3 next cards in deck
-		// for (var i = 0; i < 3; i++) {
-		// 	oneCard = allCards[0]; // select the card
-		// 	// console.log("clicked items ", clickedItems);
-		// 	// console.log("one card ", oneCard);
-		//
-		//
-		// 		//set dataCard property to the card object
-		// 		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
-		// 		thisCard.attr('dataCard', JSON.stringify(dataObj));
-		// 	}
-		// console.log("DECK after draw cards ", allCards.length);
+// replace 3 selected cards with 3 next cards in deck
+// for (var i = 0; i < 3; i++) {
+// 	oneCard = allCards[0]; // select the card
+// 	// console.log("clicked items ", clickedItems);
+// 	// console.log("one card ", oneCard);
+//
+//
+// 		//set dataCard property to the card object
+// 		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
+// 		thisCard.attr('dataCard', JSON.stringify(dataObj));
+// 	}
+// console.log("DECK after draw cards ", allCards.length);
 
-		score = 0;
-		var updateScore = function() {
-			score++;
-			$('#score').text(score);
-		};
+score = 0;
+var updateScore = function() {
+	score++;
+	$('#score').text(score);
+};
 
-		var earnSet = function() {
-			// sound.play();
-			$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
-			$('#message').append('<br><span id="successMessage" class="success-message message"> This is a SET!</span>');
-			updateScore();
-			// console.log("board after set: ", boardArray.length);
-			if (boardArray.length > 12) {
-				// console.log("just arranging ", boardArray.length);
-				arrangeCards();
-			} else {
-				// console.log("need to draw more cards ", boardArray.length);
-				drawCards();
-			}
-			setTimeout(function() {
-				clearHighlight();
-			}, 200);
-		};
+var earnSet = function() {
+	// sound.play();
+	$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
+	$('#message').append('<br><span id="successMessage" class="success-message message"> This is a SET!</span>');
+	updateScore();
+	// console.log("board after set: ", boardArray.length);
+	if (boardArray.length > 12) {
+		// console.log("just arranging ", boardArray.length);
+		arrangeCards();
+	} else {
+		// console.log("need to draw more cards ", boardArray.length);
+		drawCards();
+	}
+	setTimeout(function() {
+		clearHighlight();
+	}, 200);
+};
 
-		var indicateNoSet = function() {
-			$('#message').append('<br><span id="errorMessage" class="error-message message"> This is not a set :(</span>');
-			setTimeout(function() {
-				clearHighlight();
-			}, 300);
-		};
+var indicateNoSet = function() {
+	$('#message').append('<br><span id="errorMessage" class="error-message message"> This is not a set :(</span>');
+	setTimeout(function() {
+		clearHighlight();
+	}, 300);
+};
