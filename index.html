@@ -21,14 +21,14 @@
 				<div class="buttons">
 					<button id="startButton" class="button-action">New Game</button>
 					<button id="addCardsButton" class="button-action">Add 3 Cards</button>
-					<button id="endButton" class="button-action">End Game</button>
+					<button id="endButton" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#conf"class="button-action">End Game</button>
 					<button id="howToButton" class="button-action">How to Play
 						<span class="how-button"></span>
 					</button>
 				</div>
 
 				<div class="messages">
-					<p class="counter">Time: <span id="seconds" class="seconds"></span></p>
+					<p class="counter">Time: <span id="time" class="time">00:00</span></p>
 					<p class="player-score">Score: <span id="score">0</span></p>
 					<p id="message" class="message-spot"></p>
 				</div>
@@ -58,6 +58,25 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- Modal -->
+		<div class="modal fade" id="conf" tabindex="-1" role="dialog" aria-labelledby="confModal">
+		  <div id="modalDialog" class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Cnacel"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="confModal">End Game?</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p class="conf-message">Are you sure you would like to end the game?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		        <button type="button" id="confirm" class="btn btn-primary" data-dismiss="modal">End Game</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 		<footer class="footer">
 			<p>Vered Rekanati, 2019
