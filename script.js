@@ -145,7 +145,6 @@ var getCards = function(cards) {
 
 // draw cards after getting a set, to add 3 to the board
 var drawCards = function() {
-	checkEndGame();
 	var i = 0;
 	while (i < boardArray.length) {
 		currentBoardItem = jQuery.parseJSON(boardArray[i].id);
@@ -158,7 +157,6 @@ var drawCards = function() {
 			i++;
 		}
 	};
-
 	// replace 3 selected cards with 3 next cards in deck
 	for (var i = 0; i < 3; i++) {
 		oneCard = allCards[0]; // select the card
@@ -182,8 +180,8 @@ var drawCards = function() {
 };
 
 // check if game is about to end since there are no more cards in deck
-var checkEndGame = function() {
-	if (allCards.length <= 0) {
+var indicateEndSoon = function () {
+	if (allCards.length === 0) {
 		for (var i = 0; i < 3; i++) {
 			thisCard = $("#" + clickedItems[i] + "");
 			thisCard.removeClass('highlighted');
@@ -377,6 +375,8 @@ var earnSet = function() {
 	updateScore();
 	if (boardArray.length > 12) {
 		arrangeCards();
+	} else if (allCards.length < 3) {
+		indicateEndSoon();
 	} else {
 		drawCards();
 	}
