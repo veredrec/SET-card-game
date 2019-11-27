@@ -7,12 +7,11 @@ $(document).ready(function() {
 // *** START GAME ***
 $("#startButton").click(function() {
 	// set timer to start
-	$(".counter").removeClass('hide-message');
+	$(".count-time").removeClass('hide-counter');
 	startTime = Math.floor(Date.now() / 1000);
 	startTimeCounter();
 	// empty messages and board
-	$("#message").empty();
-	$('#cardsBoard').removeClass('small-board');
+	$("#message").html("Can you find a SET?");
 	score = 0;
 	$('#score').text(score);
 	// shuffle and deal the cards
@@ -50,26 +49,28 @@ $("#addCardsButton").click(function() {
 
 $("#endButton").click(function() {
 	// hide timer
-	$(".counter").addClass('hide-message');
+	$(".count-time").addClass('hide-counter');
 	// end game
 	$("#confirm").click(function() {
 		$("#myModal").modal("hide");
 		startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
 		// message - update final Score
-		$(".message").remove();
-		$("#message").empty();
+		$("#message").html("Can you find a SET?");
+		// $("#message").empty();
 		if (score > 7) {
-			$('#message').append('<br><span class="message end-message"> GOOD GAME! Your final score is ' + score + " in " + $("#time").html() + '!</span>');
+			$('#message').html('<span class="message end-message"> GOOD GAME! Your final score is ' + score + " in " + $("#time").html() + '!</span>');
 		} else {
-			$('#message').append("<br><span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + $("#time").html() + "</span>");
+			$('#message').html("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + $("#time").html() + "</span>");
 		}
 		// close the confirmation modal
 		$('.modal').modal('hide');
+		$('#cardsBoard').addClass('hide-board');
+		$('.page').addClass('page-end');
 		return false;
 	});
 	// cancel in confirmation modal
 	$("#cancel").click(function() {
-		$(".counter").removeClass('hide-message');
+		$(".count-time").removeClass('hide-counter');
 	});
 });
 
@@ -87,6 +88,7 @@ var score;
 var allCards;
 var oneCard;
 var thisCard;
+var cardToRemove;
 var dataObj;
 var cardObj;
 var cardOne;
@@ -102,6 +104,20 @@ var boardArray = [];
 var selectedCards = [];
 var emptySpots = [];
 var sound = new Audio("./assets/win.wav");
+// FUTURE - replace existing board with smaller board when there are less cards
+// var newBoard =
+// 	'<div id="altBoard" class="alt-board">' +
+// 	'<img id="card0" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card1" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card2" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card3" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card4" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card5" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card6" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card7" class="card-spot" dataCard="" src="">' +
+// 	'<img id="card8" class="card-spot" dataCard="" src="">' +
+// 	'</div>';
+
 
 // -----------------------------------------------------------------------------
 
@@ -162,34 +178,26 @@ var drawCards = function() {
 		oneCard = allCards[0]; // select the card
 		boardArray.push(oneCard);
 		thisCard = $("#" + clickedItems[i] + "");
-		if (!oneCard) {
-			thisCard.addClass('remove-card');
-			$('#cardsBoard').addClass('small-board');
-			return false;
-		} else {
-			thisCard.empty(); // empty card's spot
-			allCards.shift(); //remove random card from deck
+		thisCard.empty(); // empty card's spot
+		allCards.shift(); //remove random card from deck
 
-			// show card image property on card
-			$(thisCard).attr("src", oneCard.properties.image);
-			//set dataCard property to the card object
-			dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
-			thisCard.attr('dataCard', JSON.stringify(dataObj));
-		}
-	};
+		// show card image property on card
+		$(thisCard).attr("src", oneCard.properties.image);
+		//set dataCard property to the card object
+		dataObj = jQuery.parseJSON(JSON.stringify(oneCard));
+		thisCard.attr('dataCard', JSON.stringify(dataObj));
+	}
 };
 
 // check if game is about to end since there are no more cards in deck
-var indicateEndSoon = function () {
+var indicateEndSoon = function() {
 	if (allCards.length === 0) {
 		for (var i = 0; i < 3; i++) {
-			thisCard = $("#" + clickedItems[i] + "");
-			thisCard.removeClass('highlighted');
-			thisCard.empty(); // empty card's spot
-			thisCard.addClass('hide-card');
-		}
-		$('#message').append('<br><span id="successMessage" class="success-message message"> These are the last cards. Find sets if you still can and then click the "END GAME" button to see your final score!</span>');
-		$('#cardsBoard').addClass('small-board');
+			cardToRemove = $("#" + clickedItems[i] + "");
+			cardToRemove.removeClass('highlighted');
+			cardToRemove.addClass('hide-card');
+		};
+		$('#message').html('<span id="successMessage" class="success-message message"> These are the last cards. Find sets if you still can and then click the "END GAME" button to see your final score!</span>');
 	}
 };
 
@@ -223,7 +231,7 @@ var addThree = function() {
 
 // set functionality to clicked cards
 var clickItem = function(t) {
-	$(".message").remove();
+	$("#message").html("Can you find a SET?");
 	cardObj = $(t).attr("dataCard");
 
 	// check if clicked card is already selected. if it does - diselect it
@@ -320,7 +328,6 @@ var clearHighlight = function() {
 var arrangeCards = function() {
 	if (!oneCard || boardArray.length <= 12) {
 		thisCard.addClass('remove-card');
-		$('#cardsBoard').addClass('small-board');
 		return false;
 	};
 
@@ -371,7 +378,7 @@ var updateScore = function() {
 var earnSet = function() {
 	sound.play();
 	$('#addCardsButton').attr("disabled", false).removeClass("disabled-button");
-	$('#message').append('<br><span id="successMessage" class="success-message message"> This is a SET!</span>');
+	$('#message').html('<span id="successMessage" class="success-message message"> This is a SET!</span>');
 	updateScore();
 	if (boardArray.length > 12) {
 		arrangeCards();
@@ -387,7 +394,7 @@ var earnSet = function() {
 
 // ** SHOW NO SET **
 var indicateNoSet = function() {
-	$('#message').append('<br><span id="errorMessage" class="error-message message"> This is not a set :(</span>');
+	$('#message').html('<span id="errorMessage" class="error-message message"> This is not a set :(</span>');
 	setTimeout(function() {
 		clearHighlight();
 	}, 300);
