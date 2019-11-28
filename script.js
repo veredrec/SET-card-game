@@ -58,9 +58,9 @@ $("#endButton").click(function() {
 		$("#message").html("Can you find a SET?");
 		// $("#message").empty();
 		if (score > 7) {
-			$('#message').html('<span class="message end-message"> GOOD GAME! Your final score is ' + score + " in " + $("#time").html() + '!</span>');
+			$('#message').html('<span class="message end-message"> GOOD GAME!<br>Your final score is ' + score + " in " + $("#time").html() + '!</span>');
 		} else {
-			$('#message').html("<span class='message end-message'> That's it? Ok. Your final score is " + score + " in " + $("#time").html() + "</span>");
+			$('#message').html("<span class='message end-message'> That's it? Ok.<br>Your final score is " + score + " in " + $("#time").html() + "</span>");
 		}
 		// close the confirmation modal
 		$('.modal').modal('hide');
