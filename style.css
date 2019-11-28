@@ -1,7 +1,9 @@
+/* colors in cards */
 /* PURPLE: #BAA1D3 */
 /* GREEN: #A1D3BA; */
 /* RED: #AF0E1F; */
 
+/* MAIN LAYOUT  */
 body {
 	margin: 0;
 	padding: 0;
@@ -9,38 +11,45 @@ body {
 	font-family: 'Merienda', cursive;
 	height: 100%;
 }
-/* HEADER  */
-.header {
-	margin: 1rem;
-	height: 8vh;
-}
 .page-end {
 	height: 84vh;
 }
+
+/* HEADER  */
+.header {
+	margin: 0;
+	height: 8vh;
+}
 .game-title {
-	color: #BAA1D3;
+	color: #ffffff;
 	text-align: center;
 	font-size: 1.5rem;
-	margin-left: 1rem;
+	background-color: #AF0E1F;
+	padding: 1rem;
+	margin: 0;
 }
+
+/* NAV BAR */
 .buttons {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
 	vertical-align: text-bottom;
+	margin: 1rem;
 }
 .button-action {
 	color: #2E2835;
 	font-size: 1.1rem;
 	padding: 0.5rem;
 	border-radius: 0.4rem;
-	border: 1px solid #A1D3BA;
+	border: 1px solid #AF0E1F;
 	margin: 1rem 0.5rem;
 }
 .button-action:hover {
-	background-color: #A1D3BA;
-	border: 1px solid #2E2835;
+	background-color: #AF0E1F;
+	border: 1px solid #EDECEE;
 	transition: all 0.5s ease;
+	color: #EDECEE;
 }
 .button-action:focus {
 	outline: 0;
@@ -83,21 +92,13 @@ body {
 }
 .popover-header {
 	color: #2E2835;
-	background-color: #E0CFF0;
+	background-color: #D7878F;
 }
 .popover-link {
-	color: #64C9E7;
+	color: #0E1FAF;
 }
-/* MESSAGES AND COUNTERS  */
-.messages {
-	text-align: left;
-	margin: 1rem;
-	display: flex;
-	justify-content: center;
-}
-.message-spot {
-	text-align: center;
-}
+
+/* COUNTERS AND MESSAGES  */
 .count-time {
 	background-color: #000000;
 	color: #ffffff;
@@ -107,7 +108,7 @@ body {
 	margin: 0.5rem;
 }
 .count-score {
-	background-color: #64C9E7;
+	background-color: #0E1FAF;
 	color: #ffffff;
 	padding: 0.5rem;
 	border-radius: 1.3rem;
@@ -117,17 +118,27 @@ body {
 .hide-counter {
 	display: none;
 }
-.error-message {
-	color: #AF0E1F;
-}
-.success-message {
-	color: #64C9E7;
+.messages {
+	text-align: left;
+	margin: 1rem;
+	display: flex;
+	justify-content: center;
 }
 .message {
 	visibility: visible;
 }
+.message-spot {
+	text-align: center;
+}
+.error-message {
+	color: #AF0E1F;
+}
+.success-message {
+	color: #0E1FAF;
+}
 .end-message {
-	color: #A1D3BA;
+	color: #70AF0E;
+	font-size: 3rem;
 }
 
 /* CARD BOARD  */
@@ -164,14 +175,6 @@ body {
 .hide-board {
 	display: none;
 }
-.alt-board {
-	margin: 1rem auto;
-	padding: 2rem;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	width: 70%;
-}
 .hide {
 	display: none;
 }
@@ -179,18 +182,23 @@ body {
 /* FOOTER */
 .footer {
 	text-align: center;
-	color: #BAA1D3;
-	background-color: #EFEDF1;
-	height: 8vh;
+	color: #EFEDF1;
+	background-color: #D7878F;
+	height: 9vh;
 }
 .footer-text {
 	margin: 0;
-	padding: 0;
+	padding: 0.7rem;
 }
 .link {
-	color: #2E2835;
-	text-decoration: none;
+	color: #EFEDF1;
+	text-decoration: underline;
 }
 .logo {
-	width: 50px;
+	width: 40px;
+	height: 40px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	padding: 0.1em;
+	margin: 0 0.3rem;
 }
