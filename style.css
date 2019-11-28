@@ -18,7 +18,7 @@ body {
 /* HEADER  */
 .header {
 	margin: 0;
-	height: 8vh;
+	height: 7vh;
 }
 .game-title {
 	color: #ffffff;
@@ -202,3 +202,78 @@ body {
 	padding: 0.1em;
 	margin: 0 0.3rem;
 }
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 780px) {
+	.header {
+		height: 5vh;
+	}
+	.footer {
+		height: 6vh;
+	}
+	.card-spot {
+		width: 7rem;
+		margin: 0.5rem;
+	}
+	.end-message {
+		font-size: 1.5rem;
+	}
+	.page {
+		height: 88vh;
+	}
+	.page-end {
+		height: 88vh;
+	}
+}
+@media screen and (max-width: 450px) {
+	.header {
+		height: 2vh;
+	}
+	.game-title {
+		font-size: 0.8rem;
+		padding: 0.3rem;
+	}
+	.buttons {
+		margin: 1.5rem;
+	}
+	.button-action {
+		font-size: 0.7rem;
+		padding: 0.3rem;
+		margin: 0.5rem 0.2rem;
+	}
+	.count-time {
+		padding: 0.3rem;
+		border-radius: 1rem;
+		margin: 0.3rem;
+	}
+	.count-score {
+		padding: 0.3rem;
+		border-radius: 1rem;
+		margin: 0.3rem;
+	}
+	.card-spot {
+		width: 4rem;
+		margin: 0.2rem;
+	}
+	.end-message {
+		font-size: 1rem;
+	}
+	.page {
+		height: 92vh;
+	}
+	.page-end {
+		height: 92vh;
+	}
+	.footer {
+		height: 4vh;
+	}
+	.footer-text {
+		margin: 0;
+		padding: 0.3rem;
+	}
+	.logo {
+		width: 20px;
+		height: 20px;
+		padding: 0.1em;
+		margin: 0 0.1rem;
+	}
